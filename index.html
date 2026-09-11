@@ -104,6 +104,8 @@
     .order-panel p { max-width: 480px; color: #ffe8dc; position: relative; z-index: 1; }
     .order-panel .glf-button { background: var(--ink); box-shadow: none; position: relative; z-index: 1; white-space: nowrap; }
     .order-panel .glf-button:hover { background: var(--sage); }
+    .fixed-order { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; justify-content: center; padding: 13px 16px 16px; background: linear-gradient(to top, rgba(23,18,15,.96), rgba(23,18,15,.88)); box-shadow: 0 -12px 28px rgba(23,18,15,.16); }
+    .fixed-order .glf-button { width: min(520px, 100%); min-height: 58px; font-size: 1.08rem; letter-spacing: .01em; box-shadow: 0 10px 24px rgba(242,92,61,.28); }
     .details { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
     .detail { padding: 28px; border-top: 1px solid var(--line); }
     .detail strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .15em; color: var(--tomato-dark); margin-bottom: 10px; }
@@ -197,6 +199,9 @@
       </div>
     </section>
   </main>
+  <div class="fixed-order" aria-label="Ordina online">
+    <span class="glf-button" data-glf-cuid="671be21d-504f-4a54-bc45-8f9c8567171b" data-glf-ruid="af5399bf-9d5e-4481-9478-f7eadf473ca8">🍕 Ordina online</span>
+  </div>
   <footer><div class="wrap"><div class="footer-brand">🍕 Sbrodolone</div><div>© 2026 Sbrodolone · Pizzeria d'asporto</div></div></footer>
   <script src="https://www.fbgcdn.com/embedder/js/ewm2.js" defer async></script>
 </body>
