@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17120f">
+  <meta name="description" content="Sbrodolone — pizzeria d'asporto. Ordina online la tua pizza e gustala dove vuoi.">
+  <title>Sbrodolone — Pizzeria d'asporto</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23f25c3d'/%3E%3Cpath d='M16 15h32L35 49h-6z' fill='%23fff4df'/%3E%3Ccircle cx='27' cy='25' r='3' fill='%23f25c3d'/%3E%3Ccircle cx='37' cy='32' r='3' fill='%23f25c3d'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #17120f;
+      --muted: #6f6259;
+      --cream: #fff7e8;
+      --paper: #fffdf8;
+      --tomato: #f25c3d;
+      --tomato-dark: #bd3c27;
+      --gold: #f3b545;
+      --sage: #274d45;
+      --line: rgba(23,18,15,.12);
+      --shadow: 0 24px 70px rgba(72,42,17,.14);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      background: var(--sage);
+      color: #f8ead0;
+      font-size: .82rem;
+      letter-spacing: .04em;
+      text-align: center;
+      padding: 9px 16px;
+    }
+    header {
+      position: relative;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(243,181,69,.23), transparent 28%),
+        radial-gradient(circle at 11% 10%, rgba(242,92,61,.16), transparent 22%),
+        var(--ink);
+      color: white;
+      overflow: hidden;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 0; position: relative; z-index: 1;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.35rem; letter-spacing: -.04em; }
+    .brand-mark {
+      display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px;
+      background: var(--tomato); color: #fff7e8; transform: rotate(-8deg); font-size: 1.25rem;
+    }
+    .navlinks { display: flex; gap: 25px; color: #ddcec0; font-size: .92rem; }
+    .navlinks a:hover { color: white; }
+    .nav-order { border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 9px 15px; font-size: .86rem; }
+    .hero { min-height: 620px; display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 38px; padding: 58px 0 86px; }
+    .eyebrow { color: var(--gold); font-weight: 800; text-transform: uppercase; letter-spacing: .18em; font-size: .73rem; }
+    h1 { font-family: Georgia, serif; font-weight: 500; font-size: clamp(3.5rem, 8vw, 6.9rem); line-height: .92; letter-spacing: -.07em; margin: 17px 0 25px; max-width: 650px; }
+    h1 em { color: var(--tomato); font-style: normal; }
+    .hero-copy { color: #d8c9bb; font-size: 1.1rem; max-width: 470px; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; margin-top: 32px; }
+    .order-button, .glf-button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+      background: var(--tomato); color: white; border: 0; border-radius: 999px; padding: 15px 22px;
+      font-weight: 800; box-shadow: 0 14px 28px rgba(242,92,61,.25); transition: transform .2s, background .2s;
+    }
+    .order-button:hover, .glf-button:hover { background: #ff704e; transform: translateY(-2px); }
+    .ghost-button { color: #fff7e8; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 14px 19px; font-weight: 700; }
+    .ghost-button:hover { background: rgba(255,255,255,.08); }
+    .hero-note { display: flex; align-items: center; gap: 9px; color: #b9a99c; font-size: .84rem; margin-top: 21px; }
+    .hero-note span { color: var(--gold); font-size: 1.1rem; }
+    .pizza-scene { position: relative; min-height: 390px; display: grid; place-items: center; }
+    .pizza-plate { width: min(420px, 80vw); aspect-ratio: 1; border-radius: 50%; background: #f7ead0; border: 15px solid rgba(255,255,255,.18); box-shadow: 0 0 0 12px rgba(255,255,255,.06), var(--shadow); display: grid; place-items: center; transform: rotate(-7deg); }
+    .pizza { width: 76%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 29% 30%, #f5bb52 0 2.5%, transparent 3%), radial-gradient(circle at 64% 38%, #f5bb52 0 3%, transparent 3.5%), radial-gradient(circle at 50% 72%, #f5bb52 0 2.5%, transparent 3%), radial-gradient(circle at 35% 68%, #f5bb52 0 3%, transparent 3.5%), #eaa247; border: 22px solid #e7c06f; box-shadow: inset 0 0 0 8px #efdf9d, inset 0 0 0 20px #c87732; position: relative; }
+    .pizza:before, .pizza:after { content: ""; position: absolute; width: 43px; height: 33px; background: #bd3c27; border-radius: 52% 48% 55% 45%; box-shadow: 82px 47px 0 #bd3c27, 146px 19px 0 #bd3c27, 132px 115px 0 #bd3c27, 48px 137px 0 #bd3c27; transform: rotate(18deg); }
+    .pizza:before { top: 45px; left: 39px; }
+    .pizza:after { top: 88px; left: 77px; transform: rotate(-18deg) scale(.7); }
+    .splat { position: absolute; background: var(--tomato); width: 120px; height: 120px; border-radius: 48% 52% 42% 58%; filter: drop-shadow(0 10px 10px rgba(0,0,0,.16)); }
+    .splat.one { left: 1%; top: 16%; transform: rotate(18deg); }
+    .splat.two { right: 3%; bottom: 13%; width: 76px; height: 76px; background: var(--gold); transform: rotate(-13deg); }
+    .section { padding: 104px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+    .section-kicker { color: var(--tomato-dark); font-size: .75rem; font-weight: 900; text-transform: uppercase; letter-spacing: .15em; }
+    h2 { font-family: Georgia, serif; font-size: clamp(2.3rem, 5vw, 4.1rem); font-weight: 500; letter-spacing: -.06em; line-height: .98; margin: 10px 0 0; }
+    .section-intro { color: var(--muted); max-width: 390px; margin: 0; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 26px; min-height: 220px; }
+    .card:nth-child(2) { background: var(--sage); color: #fff7e8; transform: translateY(22px); }
+    .card:nth-child(2) p { color: #c8ddd4; }
+    .card-icon { font-size: 2rem; margin-bottom: 40px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .93rem; }
+    .order-section { padding: 82px 0; }
+    .order-panel { background: var(--tomato); color: white; border-radius: 30px; padding: clamp(30px, 6vw, 70px); display: flex; justify-content: space-between; align-items: center; gap: 35px; overflow: hidden; position: relative; }
+    .order-panel:after { content: "✦"; position: absolute; right: 7%; top: -30px; font-size: 14rem; line-height: 1; color: rgba(255,255,255,.1); transform: rotate(15deg); }
+    .order-panel h2 { position: relative; z-index: 1; }
+    .order-panel p { max-width: 480px; color: #ffe8dc; position: relative; z-index: 1; }
+    .order-panel .glf-button { background: var(--ink); box-shadow: none; position: relative; z-index: 1; white-space: nowrap; }
+    .order-panel .glf-button:hover { background: var(--sage); }
+    .details { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
+    .detail { padding: 28px; border-top: 1px solid var(--line); }
+    .detail strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .15em; color: var(--tomato-dark); margin-bottom: 10px; }
+    .detail p { margin: 0; font-size: 1.1rem; }
+    footer { background: var(--ink); color: #d6c6b7; padding: 30px 0; font-size: .85rem; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; }
+    .footer-brand { color: white; font-weight: 800; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 28px, 560px); }
+      .navlinks { display: none; }
+      nav { padding: 16px 0; }
+      .hero { grid-template-columns: 1fr; padding: 55px 0 65px; min-height: auto; }
+      h1 { font-size: clamp(3.6rem, 19vw, 6rem); }
+      .pizza-scene { min-height: 330px; order: -1; }
+      .pizza-plate { width: min(345px, 83vw); }
+      .splat.one { left: 3%; top: 10%; }
+      .section { padding: 72px 0; }
+      .section-head, .order-panel { display: block; }
+      .section-intro { margin-top: 22px; }
+      .cards { grid-template-columns: 1fr; }
+      .card:nth-child(2) { transform: none; }
+      .order-panel .glf-button { margin-top: 18px; }
+      .details { grid-template-columns: 1fr; gap: 0; }
+      footer .wrap { display: block; }
+      footer .wrap > * + * { margin-top: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Pizza fatta con calma. Ordini fatti in un attimo.</div>
+  <header id="home">
+    <div class="wrap">
+      <nav aria-label="Navigazione principale">
+        <a class="brand" href="#home"><span class="brand-mark">🍕</span> Sbrodolone</a>
+        <div class="navlinks">
+          <a href="#perche">Perché noi</a>
+          <a href="#ordine">Ordina</a>
+          <a href="#contatti">Contatti</a>
+        </div>
+        <a class="nav-order" href="#ordine">Ordina online ↗</a>
+      </nav>
+      <div class="hero">
+        <div>
+          <div class="eyebrow">Pizzeria d'asporto</div>
+          <h1>La pizza che<br><em>fa parlare.</em></h1>
+          <p class="hero-copy">Impasto, ingredienti e quella voglia di fare le cose per bene. Sbrodolone è la tua pausa golosa, pronta da portare via.</p>
+          <div class="actions">
+            <a class="order-button" href="#ordine">Guarda il menu <span>↗</span></a>
+            <a class="ghost-button" href="#contatti">Dove trovarci</a>
+          </div>
+          <div class="hero-note"><span>✦</span> Ordina online e ritira senza attese inutili</div>
+        </div>
+        <div class="pizza-scene" aria-label="Illustrazione di una pizza">
+          <div class="splat one"></div>
+          <div class="pizza-plate"><div class="pizza"></div></div>
+          <div class="splat two"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="section" id="perche">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="section-kicker">Il nostro impasto</div><h2>Buona da<br>ricordare.</h2></div>
+          <p class="section-intro">Una piccola pizzeria, un grande classico: scegli quello che ti va, al resto pensiamo noi.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="card-icon">🥣</div><h3>Impasto curato</h3><p>La base di ogni pizza fatta bene: tempo, attenzione e il giusto morso.</p></article>
+          <article class="card"><div class="card-icon">🍅</div><h3>Ingredienti veri</h3><p>Il sapore arriva da quello che mettiamo sopra. Semplice, riconoscibile, buonissimo.</p></article>
+          <article class="card"><div class="card-icon">🔥</div><h3>Calda al punto giusto</h3><p>Ordina, passa a ritirare e portala a tavola ancora fumante.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="order-section" id="ordine">
+      <div class="wrap">
+        <div class="order-panel">
+          <div><div class="section-kicker" style="color:#ffe0a8">Hai già fame?</div><h2>Il menu è<br>qui.</h2><p>Scopri tutte le pizze disponibili e invia il tuo ordine online in pochi passaggi.</p></div>
+          <!-- If you would like to customize the button, remove or change the "class" attribute inside the span tag -->
+          <span class="glf-button" data-glf-cuid="671be21d-504f-4a54-bc45-8f9c8567171b" data-glf-ruid="af5399bf-9d5e-4481-9478-f7eadf473ca8">See MENU &amp; Order</span>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="contatti" style="padding-top:50px">
+      <div class="wrap">
+        <div class="section-head"><div><div class="section-kicker">Passa a trovarci</div><h2>Ci vediamo<br>da Sbrodolone.</h2></div><p class="section-intro">Per indirizzo, orari e indicazioni aggiornate, consulta la scheda ufficiale della pizzeria.</p></div>
+        <div class="details">
+          <div class="detail"><strong>Posizione</strong><p><a href="https://share.google/fU23FVKaasc7jEwEK" target="_blank" rel="noopener">Apri la scheda Google Maps ↗</a></p></div>
+          <div class="detail"><strong>Ordini</strong><p>Disponibili online tramite il pulsante “Ordina”</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap"><div class="footer-brand">🍕 Sbrodolone</div><div>© 2026 Sbrodolone · Pizzeria d'asporto</div></div></footer>
+  <script src="https://www.fbgcdn.com/embedder/js/ewm2.js" defer async></script>
+</body>
+</html>
